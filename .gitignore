@@ -5,8 +5,15 @@ dist
 tmp
 out-tsc
 *.tsbuildinfo
+.next
+.vercel
 .expo
 .expo-shared
+
+# Local environment values
+.env
+.env.*
+!.env.example
 
 # dependencies
 node_modules

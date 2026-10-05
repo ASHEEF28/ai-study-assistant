@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "AI Study Assistant"
+description = "A classroom-ready study assistant where students create accounts, ask Gemini questions, and securely revisit their own saved answers."
+version = "1.0.0"
+id = "artifacts/ai-study-assistant"
+router = "path"
+
+[[services]]
+name = "web"
+paths = ["/", "/_next/hmr"]
+localPort = 21659
+
+[services.development]
+run = "pnpm --filter @workspace/ai-study-assistant run dev"
+
+[services.production]
+build = ["pnpm", "--filter", "@workspace/ai-study-assistant", "run", "build"]
+serve = "static"
+publicDir = "artifacts/ai-study-assistant/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "21659"
+BASE_PATH = "/"
